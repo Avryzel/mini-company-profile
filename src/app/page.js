@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="relative h-screen w-full">
+    <div className="relative min-h-screen w-full flex items-center justify-center pt-24 pb-12">
 
       <div
         className="absolute inset-0 bg-[url('/assets/images/backgrounds/bg3.jpg')] bg-cover bg-center bg-no-repeat -z-10"

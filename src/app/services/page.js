@@ -1,7 +1,7 @@
 export default function ServicesPage() {
-  return (
-    <main>
-      
-    </main>
-  );
+    return (
+        <main>
+
+        </main>
+    );
 }
