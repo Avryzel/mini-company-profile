@@ -29,25 +29,25 @@ export default function ContactPage() {
 
         {/* FORM */}
         <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm">
-          <h2 className="text-xl font-semibold mb-4">Hubungi Kami</h2>
+          <h2 className="text-black text-xl font-semibold mb-4">Hubungi Kami</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
 
             <div className="grid grid-cols-2 gap-4">
-              <input placeholder="Nama Depan" className="p-3 border rounded-lg bg-white" />
-              <input placeholder="Nama Belakang" className="p-3 border rounded-lg bg-white" />
+              <input placeholder="Nama Depan" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
+              <input placeholder="Nama Belakang" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <input placeholder="Email" className="p-3 border rounded-lg bg-white" />
-              <input placeholder="Nomor HP" className="p-3 border rounded-lg bg-white" />
+              <input placeholder="Email" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
+              <input placeholder="Nomor HP" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
             </div>
 
-            <input placeholder="Subjek" className="w-full p-3 border rounded-lg bg-white" />
+            <input placeholder="Subjek" className="w-full p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
 
             <textarea
               placeholder="Tulis pesan Anda..."
-              className="w-full p-3 border rounded-lg h-32 bg-white"
+              className="w-full p-3 border rounded-lg h-32 bg-white placeholder-gray-400 text-black"
             />
 
             <button className="w-full bg-[#22C55E] text-white py-3 rounded-lg hover:bg-green-600 transition">
@@ -61,7 +61,7 @@ export default function ContactPage() {
         <div className="space-y-6">
 
           <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Butuh Bantuan?</h2>
+            <h2 className="text-black text-xl font-semibold mb-4">Butuh Bantuan?</h2>
 
             <div className="space-y-3 text-gray-600 text-sm">
               <p>📞 +62 812-3456-7890</p>
