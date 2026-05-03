@@ -1,11 +1,7 @@
 "use client";
+import { saveMessage } from '@/app/actions'
 
 export default function ContactPage() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Pesan berhasil dikirim!");
-  };
-
   return (
     <main className="bg-gray-100">
 
@@ -31,26 +27,58 @@ export default function ContactPage() {
         <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm">
           <h2 className="text-black text-xl font-semibold mb-4">Hubungi Kami</h2>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Hubungkan formAction di sini */}
+          <form action={saveMessage} className="space-y-4">
 
             <div className="grid grid-cols-2 gap-4">
-              <input placeholder="Nama Depan" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
-              <input placeholder="Nama Belakang" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
+              <input
+                name="first_name"
+                placeholder="Nama Depan"
+                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
+                required
+              />
+              <input
+                name="last_name"
+                placeholder="Nama Belakang"
+                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
+                required
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <input placeholder="Email" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
-              <input placeholder="Nomor HP" className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
+                required
+              />
+              <input
+                name="phone"
+                placeholder="Nomor HP"
+                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
+                required
+              />
             </div>
 
-            <input placeholder="Subjek" className="w-full p-3 border rounded-lg bg-white placeholder-gray-400 text-black" />
-
-            <textarea
-              placeholder="Tulis pesan Anda..."
-              className="w-full p-3 border rounded-lg h-32 bg-white placeholder-gray-400 text-black"
+            <input
+              name="subject"
+              placeholder="Subjek"
+              className="w-full p-3 border rounded-lg bg-white placeholder-gray-400 text-black"
+              required
             />
 
-            <button className="w-full bg-[#22C55E] text-white py-3 rounded-lg hover:bg-green-600 transition">
+            <textarea
+              name="message"
+              placeholder="Tulis pesan Anda..."
+              className="w-full p-3 border rounded-lg h-32 bg-white placeholder-gray-400 text-black"
+              required
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-[#22C55E] text-white py-3 rounded-lg hover:bg-green-600 transition"
+            >
               Kirim Pesan
             </button>
 
