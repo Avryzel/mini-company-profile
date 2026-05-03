@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AVSA WASTE - Startup Company Profile
 
-## Getting Started
+AVSA WASTE adalah platform profil perusahaan startup yang berfokus pada solusi pengelolaan sampah modern dan ramah lingkungan. Proyek ini dibangun menggunakan **Next.js 15 (App Router)** untuk mendemonstrasikan pemahaman arsitektur web modern, komponen responsif, dan *dynamic routing*.
 
-First, run the development server:
+## 🚀 Live Demo
+Website telah dideploy dan dapat diakses di: [avsa-waste.vercel.app](https://avsa-waste.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠️ Tech Stack
+- **Framework:** Next.js 15
+- **Styling:** Tailwind CSS
+- **Deployment:** Vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📂 Section
+Proyek ini terdiri dari beberapa halaman:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 1. Home Page (`/`)
+<img width="1903" height="1084" alt="image" src="https://github.com/user-attachments/assets/d64ac253-dcce-4dd8-92bd-36fdabe6f229" />
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. About Page (`/about`)
+<img width="1903" height="1945" alt="image" src="https://github.com/user-attachments/assets/96e60218-a802-4e51-b734-cc6f10082575" />
 
-## Learn More
+### 3. Services Page (`/services`)
+<img width="1903" height="1037" alt="image" src="https://github.com/user-attachments/assets/6a6f2419-9c91-46e4-9d3d-a0ca7fe1a8ec" />
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Contact Page (`/contact`)
+<img width="1903" height="997" alt="image" src="https://github.com/user-attachments/assets/cb94a7d4-d4b3-450e-8d2e-c1ed91ff92f3" />
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Dynamic Team Page (`/team/[id]`)
+<img width="1903" height="1084" alt="image" src="https://github.com/user-attachments/assets/fd957c8b-7822-427a-b911-d9a5a7ebbf07" />
+Example Path: /team/jel
