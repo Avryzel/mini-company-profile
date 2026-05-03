@@ -2,7 +2,7 @@
 
 import { supabase } from '@/lib/supabase'
 
-export async function saveMessage(formData) {
+export async function saveMessage(prevState, formData) {
   const rawFormData = {
     first_name: formData.get('first_name'),
     last_name: formData.get('last_name'),
@@ -12,14 +12,20 @@ export async function saveMessage(formData) {
     message: formData.get('message'),
   }
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('messages')
     .insert([rawFormData])
 
   if (error) {
     console.error("Gagal simpan:", error.message)
-    return { success: false, error: error.message }
+    return {
+      success: false,
+      message: "Gagal mengirim pesan: " + error.message
+    }
   }
 
-  return { success: true }
+  return {
+    success: true,
+    message: "Pesan berhasil dikirim! Tim kami akan segera menghubungi Anda."
+  }
 }
