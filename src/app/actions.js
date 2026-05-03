@@ -3,29 +3,36 @@
 import { supabase } from '@/lib/supabase'
 
 export async function saveMessage(prevState, formData) {
-  const rawFormData = {
-    first_name: formData.get('first_name'),
-    last_name: formData.get('last_name'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    subject: formData.get('subject'),
-    message: formData.get('message'),
-  }
+  try {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      throw new Error("Konfigurasi database belum siap.");
+    }
 
-  const { error } = await supabase
-    .from('messages')
-    .insert([rawFormData])
+    const rawFormData = {
+      first_name: formData.get('first_name'),
+      last_name: formData.get('last_name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    }
 
-  if (error) {
-    console.error("Gagal simpan:", error.message)
+    const { error } = await supabase
+      .from('messages')
+      .insert([rawFormData])
+
+    if (error) {
+      console.error("Supabase Error:", error.message);
+      return { success: false, message: "Gagal menyimpan pesan ke database." };
+    }
+
+    return { success: true, message: "Pesan berhasil dikirim!" };
+
+  } catch (err) {
+    console.error("Production Crash Prevented:", err.message);
     return {
       success: false,
-      message: "Gagal mengirim pesan: " + error.message
-    }
-  }
-
-  return {
-    success: true,
-    message: "Pesan berhasil dikirim! Tim kami akan segera menghubungi Anda."
+      message: "Terjadi gangguan sistem. Silakan coba beberapa saat lagi."
+    };
   }
 }
