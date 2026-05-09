@@ -1,5 +1,5 @@
 "use client";
-import { saveMessage } from '@/app/actions'
+import { saveMessage } from '../actions'
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
