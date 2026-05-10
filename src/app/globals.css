@@ -24,3 +24,51 @@ body {
   color: var(--foreground);
   font-family: 'Segoe UI', sans-serif;
 }
+
+.login-overlay {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('/assets/images/backgrounds/bg3.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login-wrapper {
+  display: flex;
+  width: 850px;
+  height: 520px;
+  background: #DFF9E8;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.login-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.login-right {
+  width: 50%;
+  padding: 30px;
+  background: white;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f8f8f8;
+  color: #333 !important;
+}
