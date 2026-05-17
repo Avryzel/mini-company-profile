@@ -3,22 +3,27 @@
 import React, { useState } from 'react';
 import { z } from 'zod';
 
-const loginSchema = z.object({
-    identifier: z.string().min(6, { message: "Username minimal harus 6 karakter" }),
-    password: z.string().min(6, { message: "Password minimal harus 6 karakter" })
+const registerSchema = z.object({
+    fullName: z.string().min(3, { message: "Nama lengkap minimal harus 3 karakter" }),
+    identifier: z.string().min(6, { message: "Nomor HP / Email minimal harus 6 karakter" }),
+    password: z.string().min(6, { message: "Password minimal harus 6 karakter" }),
+    confirmPassword: z.string()
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "Konfirmasi password tidak cocok",
+    path: ["confirmPassword"]
 });
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const [error, setError] = useState("");
 
-    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();~
         setError("");
 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData);
 
-        const result = loginSchema.safeParse(data);
+        const result = registerSchema.safeParse(data);
         if (!result.success) {
             setError(result.error.issues[0].message);
             return;
@@ -101,29 +106,6 @@ export default function LoginPage() {
             border: 'none',
             background: '#eee',
             color: '#333',
-        },
-        divider: {
-            textAlign: 'center' as const,
-            margin: '12px 0',
-            fontSize: '12px',
-            color: '#777',
-        },
-        socialContainer: {
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: '10px',
-            marginBottom: '5px',
-        },
-        socialBtn: {
-            width: '49%',
-            padding: '11px',
-            borderRadius: '10px',
-            border: '2px solid #22C55E',
-            background: 'transparent',
-            color: '#22C55E',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            fontSize: '13px',
         }
     };
 
@@ -133,7 +115,7 @@ export default function LoginPage() {
 
             <div style={styles.whiteOverlayLayer as any}>
                 <button
-                    onClick={() => window.location.href = '/'}
+                    onClick={() => window.location.href = '/login'}
                     style={{ position: 'absolute', top: '20px', left: '20px', width: '50px', height: '50px', background: '#DFF9E8', borderRadius: '50%', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: '0 4px 10px rgba(0,0,0,0.15)', zIndex: 20 }}
                 >
                     <img src="/assets/images/icons/panah.png" alt="back" style={{ width: '22px' }} />
@@ -141,22 +123,27 @@ export default function LoginPage() {
 
                 <div style={styles.wrapper as any}>
                     <div style={styles.sideBrand as any}>
-                        <img src="/assets/images/icons/sampah5.png" alt="logo" style={{ width: '160px', height: 'auto', marginBottom: '15px' }} />
+                        <img src="/assets/images/icons/sampah6.png" alt="logo" style={{ width: '160px', height: 'auto', marginBottom: '15px' }} />
                         <h1 style={{ color: '#14532d', margin: 0, fontSize: '28px' }}>AVSA WASTE</h1>
                         <p style={{ color: '#555', fontSize: '13px', marginTop: '5px' }}>
-                            Solusi pengelolaan sampah pintar untuk lingkungan lebih bersih
+                            Jadwalkan penjemputan sampah organik, anorganik, dan B3 langsung dari genggaman
                         </p>
                     </div>
 
                     <div style={styles.sideForm as any}>
-                        <h2 style={{ color: '#14532d', margin: '0 0 4px 0', fontSize: '22px' }}>Masuk ke akun Anda</h2>
+                        <h2 style={{ color: '#14532d', margin: '0 0 4px 0', fontSize: '22px' }}>Buat Akun Baru</h2>
                         <p style={{ color: '#555', fontSize: '13px', margin: '0 0 12px 0' }}>
-                            Gunakan nomor HP atau email yang terdaftar
+                            Isi data berikut untuk mendaftar
                         </p>
 
                         {error && <p style={{ color: 'red', fontSize: '12px', marginBottom: '8px' }}>{error}</p>}
 
-                        <form onSubmit={handleLogin}>
+                        <form onSubmit={handleRegister}>
+                            <input
+                                name="fullName"
+                                style={styles.input}
+                                placeholder="Nama Lengkap"
+                            />
                             <input
                                 name="identifier"
                                 style={styles.input}
@@ -168,26 +155,25 @@ export default function LoginPage() {
                                 type="password"
                                 placeholder="Password"
                             />
-                            <button type="submit" style={{ width: '100%', padding: '13px', background: '#22C55E', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 'bold', marginTop: '8px' }}>
-                                Masuk
+                            <input
+                                name="confirmPassword"
+                                style={styles.input}
+                                type="password"
+                                placeholder="Konfirmasi Password"
+                            />
+                            <button type="submit" style={{ width: '100%', padding: '13px', background: '#22C55E', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 'bold', marginTop: '10px' }}>
+                                Daftar
                             </button>
                         </form>
 
-                        <div style={{ textAlign: 'center', marginTop: '12px', fontSize: '13px', color: '#555' }}>
-                            Belum punya akun?{' '}
+                        <div style={{ textAlign: 'center', marginTop: '15px', fontSize: '14px', color: '#555' }}>
+                            Sudah punya akun?{' '}
                             <span
-                                onClick={() => window.location.href = '/register'}
+                                onClick={() => window.location.href = '/login'}
                                 style={{ color: '#22C55E', fontWeight: 'bold', cursor: 'pointer' }}
                             >
-                                Daftar
+                                Masuk
                             </span>
-                        </div>
-
-                        <div style={styles.divider}>atau masuk dengan</div>
-
-                        <div style={styles.socialContainer}>
-                            <button type="button" style={styles.socialBtn}>Google</button>
-                            <button type="button" style={styles.socialBtn}>Nomor HP</button>
                         </div>
                     </div>
 
