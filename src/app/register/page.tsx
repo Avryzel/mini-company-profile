@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { z } from 'zod';
+import { supabase } from '../../lib/supabase';
 
 const registerSchema = z.object({
     fullName: z.string().min(3, { message: "Nama lengkap minimal harus 3 karakter" }),
@@ -16,8 +17,8 @@ const registerSchema = z.object({
 export default function RegisterPage() {
     const [error, setError] = useState("");
 
-    const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();~
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setError("");
 
         const formData = new FormData(e.currentTarget);
@@ -29,7 +30,21 @@ export default function RegisterPage() {
             return;
         }
 
-        document.cookie = "session_token=true; path=/; max-age=3600";
+        const { data: authData, error: authError } = await supabase.auth.signUp({
+            email: data.identifier as string,
+            password: data.password as string,
+            options: {
+                data: {
+                    full_name: data.fullName as string,
+                }
+            }
+        });
+
+        if (authError) {
+            setError(authError.message);
+            return;
+        }
+
         window.location.href = '/dashboard';
     };
 

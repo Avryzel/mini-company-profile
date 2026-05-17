@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { z } from 'zod';
+import { supabase } from '../../lib/supabase';
 
 const loginSchema = z.object({
     identifier: z.string().min(6, { message: "Username minimal harus 6 karakter" }),
@@ -11,7 +12,7 @@ const loginSchema = z.object({
 export default function LoginPage() {
     const [error, setError] = useState("");
 
-    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
 
@@ -24,7 +25,16 @@ export default function LoginPage() {
             return;
         }
 
-        document.cookie = "session_token=true; path=/; max-age=3600";
+        const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+            email: data.identifier as string,
+            password: data.password as string,
+        });
+
+        if (authError) {
+            setError(authError.message);
+            return;
+        }
+
         window.location.href = '/dashboard';
     };
 
