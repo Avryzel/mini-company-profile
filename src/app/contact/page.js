@@ -119,7 +119,7 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="space-y-6">
+          <div className="flex flex-col space-y-6 h-full">
             <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm">
               <h2 className="text-black text-xl font-semibold mb-4">Butuh Bantuan?</h2>
               <div className="space-y-3 text-gray-600 text-sm">
@@ -129,12 +129,14 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-[#DFF9E8] p-2 rounded-xl shadow-sm overflow-hidden">
-              <iframe
-                src="https://maps.google.com/maps?q=Depok&output=embed"
-                className="w-full h-64 border-0 rounded-lg"
-              ></iframe>
+            <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm flex-1 flex flex-col items-center justify-center border border-dashed border-[#16A34A]/40 text-center min-h-[220px]">
+              <div className="text-3xl mb-2">📍</div>
+              <h3 className="text-black font-semibold text-sm mb-1">Lokasi Operasional AVSA WASTE</h3>
+              <p className="text-gray-500 text-xs max-w-xs">
+                Kampus Universitas Pancasila, Srengseng Sawah, Jagakarsa, Jakarta Selatan.
+              </p>
             </div>
+
           </div>
 
         </div>

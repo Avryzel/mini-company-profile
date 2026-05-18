@@ -142,13 +142,6 @@ export default function LoginPage() {
             <div style={styles.backgroundImageLayer as any} />
 
             <div style={styles.whiteOverlayLayer as any}>
-                <button
-                    onClick={() => window.location.href = '/'}
-                    style={{ position: 'absolute', top: '20px', left: '20px', width: '50px', height: '50px', background: '#DFF9E8', borderRadius: '50%', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: '0 4px 10px rgba(0,0,0,0.15)', zIndex: 20 }}
-                >
-                    <img src="/assets/images/icons/panah.png" alt="back" style={{ width: '22px' }} />
-                </button>
-
                 <div style={styles.wrapper as any}>
                     <div style={styles.sideBrand as any}>
                         <img src="/assets/images/icons/sampah5.png" alt="logo" style={{ width: '160px', height: 'auto', marginBottom: '15px' }} />
