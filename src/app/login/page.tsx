@@ -112,29 +112,6 @@ export default function LoginPage() {
             background: '#eee',
             color: '#333',
         },
-        divider: {
-            textAlign: 'center' as const,
-            margin: '12px 0',
-            fontSize: '12px',
-            color: '#777',
-        },
-        socialContainer: {
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: '10px',
-            marginBottom: '5px',
-        },
-        socialBtn: {
-            width: '49%',
-            padding: '11px',
-            borderRadius: '10px',
-            border: '2px solid #22C55E',
-            background: 'transparent',
-            color: '#22C55E',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            fontSize: '13px',
-        }
     };
 
     return (
@@ -184,13 +161,6 @@ export default function LoginPage() {
                             >
                                 Daftar
                             </span>
-                        </div>
-
-                        <div style={styles.divider}>atau masuk dengan</div>
-
-                        <div style={styles.socialContainer}>
-                            <button type="button" style={styles.socialBtn}>Google</button>
-                            <button type="button" style={styles.socialBtn}>Nomor HP</button>
                         </div>
                     </div>
 
