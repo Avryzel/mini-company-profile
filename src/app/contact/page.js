@@ -1,4 +1,5 @@
 "use client";
+
 import { saveMessage } from '../actions'
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -28,126 +29,120 @@ export default function ContactPage() {
   const [state, formAction] = useActionState(saveMessage, null);
 
   return (
-    <main className="bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100 w-full m-0 p-0 box-border">
 
-      {/* HEADER (SUDAH TANPA GAMBAR) */}
-      <div className="bg-[#16A34A] text-white py-24 px-6">
+      <main className="flex-grow w-full pt-[80px]">
 
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-3">Kontak Kami</h1>
-
-          <div className="text-sm text-white/80 flex justify-center gap-2">
-            <span className="hover:text-white cursor-pointer">Beranda</span>
-            <span>/</span>
-            <span className="font-medium">Kontak</span>
+        <div className="bg-[#16A34A] text-white py-24 px-6 w-full">
+          <div className="max-w-6xl mx-auto text-center">
+            <h1 className="text-4xl font-bold mb-3">Kontak Kami</h1>
+            <div className="text-sm text-white/80 flex justify-center gap-2">
+              <span className="hover:text-white cursor-pointer">Beranda</span>
+              <span>/</span>
+              <span className="font-medium">Kontak</span>
+            </div>
           </div>
         </div>
 
-      </div>
+        <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 w-full box-border">
 
-      {/* CONTENT */}
-      <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
+          <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm h-fit">
+            <h2 className="text-black text-xl font-semibold mb-4">Hubungi Kami</h2>
 
-        {/* FORM */}
-        <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm">
-          <h2 className="text-black text-xl font-semibold mb-4">Hubungi Kami</h2>
-
-          {state?.message && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 p-6 bg-black/20 backdrop-blur-sm">
-              <div className={`max-w-md w-full p-6 rounded-2xl shadow-2xl text-center transform animate-in fade-in zoom-in duration-300 bg-white`}>
-                <div className={`text-3xl mb-3 ${state.success ? "text-green-500" : "text-red-500"}`}>
-                  {state.success ? "✅" : "❌"}
+            {state?.message && (
+              <div className="fixed inset-0 flex items-center justify-center z-50 p-6 bg-black/20 backdrop-blur-sm">
+                <div className="max-w-md w-full p-6 rounded-2xl shadow-2xl text-center transform animate-in fade-in zoom-in duration-300 bg-white">
+                  <div className={`text-3xl mb-3 ${state.success ? "text-green-500" : "text-red-500"}`}>
+                    {state.success ? "✅" : "❌"}
+                  </div>
+                  <h3 className="text-xl font-bold text-black mb-2">
+                    {state.success ? "Berhasil!" : "Terjadi Kesalahan"}
+                  </h3>
+                  <p className="text-gray-600 mb-6">{state.message}</p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition"
+                  >
+                    Tutup
+                  </button>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2">
-                  {state.success ? "Berhasil!" : "Terjadi Kesalahan"}
-                </h3>
-                <p className="text-gray-600 mb-6">{state.message}</p>
-                <button
-                  onClick={() => window.location.reload()} // Cara simpel untuk reset/close
-                  className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition"
-                >
-                  Tutup
-                </button>
+              </div>
+            )}
+
+            <form action={formAction} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <input
+                  name="first_name"
+                  placeholder="Nama Depan"
+                  className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full box-border"
+                  required
+                />
+                <input
+                  name="last_name"
+                  placeholder="Nama Belakang"
+                  className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full box-border"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full box-border"
+                  required
+                />
+                <input
+                  name="phone"
+                  placeholder="Nomor HP"
+                  className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full box-border"
+                  required
+                />
+              </div>
+
+              <input
+                name="subject"
+                placeholder="Subjek"
+                className="w-full p-3 border rounded-lg bg-white placeholder-gray-400 text-black box-border"
+                required
+              />
+
+              <textarea
+                name="message"
+                placeholder="Tulis pesan Anda..."
+                className="w-full p-3 border rounded-lg h-32 bg-white placeholder-gray-400 text-black box-border"
+                required
+              />
+
+              <SubmitButton />
+            </form>
+          </div>
+
+          <div className="flex flex-col space-y-6 h-full">
+            <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm">
+              <h2 className="text-black text-xl font-semibold mb-4">Butuh Bantuan?</h2>
+              <div className="space-y-3 text-gray-600 text-sm">
+                <p>📞 +62 812-3456-7890</p>
+                <p>✉️ avsa@waste.id</p>
+                <p>📍 Depok, Indonesia</p>
               </div>
             </div>
-          )}
 
-          <form action={formAction} className="space-y-4">
-
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                name="first_name"
-                placeholder="Nama Depan"
-                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
-                required
-              />
-              <input
-                name="last_name"
-                placeholder="Nama Belakang"
-                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
-                required
-              />
+            <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm flex-1 flex flex-col items-center justify-center border border-dashed border-[#16A34A]/40 text-center min-h-[220px]">
+              <div className="text-3xl mb-2">📍</div>
+              <h3 className="text-black font-semibold text-sm mb-1">Lokasi Operasional AVSA WASTE</h3>
+              <p className="text-gray-500 text-xs max-w-xs">
+                Kampus Universitas Pancasila, Srengseng Sawah, Jagakarsa, Jakarta Selatan.
+              </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                name="email"
-                type="email"
-                placeholder="Email"
-                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
-                required
-              />
-              <input
-                name="phone"
-                placeholder="Nomor HP"
-                className="p-3 border rounded-lg bg-white placeholder-gray-400 text-black w-full"
-                required
-              />
-            </div>
-
-            <input
-              name="subject"
-              placeholder="Subjek"
-              className="w-full p-3 border rounded-lg bg-white placeholder-gray-400 text-black"
-              required
-            />
-
-            <textarea
-              name="message"
-              placeholder="Tulis pesan Anda..."
-              className="w-full p-3 border rounded-lg h-32 bg-white placeholder-gray-400 text-black"
-              required
-            />
-
-            <SubmitButton />
-
-          </form>
-        </div>
-
-        {/* KANAN */}
-        <div className="space-y-6">
-
-          <div className="bg-[#DFF9E8] p-6 rounded-xl shadow-sm">
-            <h2 className="text-black text-xl font-semibold mb-4">Butuh Bantuan?</h2>
-
-            <div className="space-y-3 text-gray-600 text-sm">
-              <p>📞 +62 812-3456-7890</p>
-              <p>✉️ avsa@waste.id</p>
-              <p>📍 Depok, Indonesia</p>
-            </div>
-          </div>
-
-          <div className="bg-[#DFF9E8] p-2 rounded-xl shadow-sm overflow-hidden">
-            <iframe
-              src="https://maps.google.com/maps?q=Depok&output=embed"
-              className="w-full h-64 border-0 rounded-lg"
-            ></iframe>
           </div>
 
         </div>
 
-      </div>
+      </main>
 
-    </main>
+    </div>
   );
 }

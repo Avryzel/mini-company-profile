@@ -1,3 +1,7 @@
+"use client";
+
+import React from 'react';
+
 export default function ServicesSection() {
   const services = [
     {
@@ -33,62 +37,56 @@ export default function ServicesSection() {
   ];
 
   return (
-    <>
-      {/* HEADER */}
-      <div className="bg-[#16A34A] text-white py-24 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-3">
-            Layanan Kami
-          </h1>
+    <div className="flex flex-col min-h-screen bg-gray-100 w-full m-0 p-0 box-border">
 
-          <div className="text-sm text-white/80 flex justify-center gap-2">
-            <span className="hover:text-white cursor-pointer">
-              Beranda
-            </span>
-            <span>/</span>
-            <span className="font-medium">
-              Layanan
-            </span>
+      <main className="flex-grow w-full pt-[80px]">
+
+        <div className="bg-[#16A34A] text-white py-24 px-6 w-full">
+          <div className="max-w-6xl mx-auto text-center">
+            <h1 className="text-4xl font-bold mb-3">
+              Layanan Kami
+            </h1>
+            <div className="text-sm text-white/80 flex justify-center gap-2">
+              <span className="hover:text-white cursor-pointer">
+                Beranda
+              </span>
+              <span>/</span>
+              <span className="font-medium">
+                Layanan
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* CONTENT */}
-      <section className="bg-gray-100 py-20 px-6">
+        <section className="py-20 px-6 w-full box-border">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-gray-800">
+              Berbagai Layanan Pengelolaan Sampah
+            </h2>
+          </div>
 
-        {/* TITLE (SUDAH TIDAK DOUBLE) */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">
-            Berbagai Layanan Pengelolaan Sampah
-          </h2>
-        </div>
-
-        {/* GRID */}
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-
-          {services.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition text-center"
-            >
-              {/* ICON (BERBEDA) */}
-              <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#DFF9E8] text-[#16A34A] text-xl">
-                {item.icon}
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 w-full box-border">
+            {services.map((item, index) => (
+              <div
+                key={index}
+                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition text-center"
+              >
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#DFF9E8] text-[#16A34A] text-xl">
+                  {item.icon}
+                </div>
+                <h3 className="font-semibold text-lg mb-2 text-gray-800">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {item.desc}
+                </p>
               </div>
+            ))}
+          </div>
+        </section>
 
-              <h3 className="font-semibold text-lg mb-2 text-gray-800">
-                {item.title}
-              </h3>
+      </main>
 
-              <p className="text-sm text-gray-600">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-
-        </div>
-
-      </section>
-    </>
+    </div>
   );
 }
