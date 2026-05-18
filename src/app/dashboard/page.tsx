@@ -100,20 +100,25 @@ export default function DashboardPage() {
         item.lokasi.toLowerCase().includes(query.toLowerCase())
     );
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (id: any) => {
         startTransition(async () => {
             deleteOptimisticData(id);
 
-            const { error } = await supabase
-                .from('reports')
-                .delete()
-                .eq('id', id);
+            try {
+                const { error, status } = await supabase
+                    .from('reports')
+                    .delete()
+                    .eq('id', id);
 
-            if (error) {
-                alert("Gagal menghapus data: " + error.message);
-                fetchReports();
-            } else {
+                if (error) {
+                    throw new Error(error.message);
+                }
+
                 setDbData(prev => prev.filter(item => item.id !== id));
+
+            } catch (err: any) {
+                alert("Gagal menghapus data dari database: " + err.message);
+                fetchReports();
             }
         });
     };
